@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria Champagnat - Uniformes e Papelaria</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        /* Header */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1e40af;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #333;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #1e40af;
+        }
+        
+        .btn-primary {
+            background: #1e40af;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background: #1e3a8a;
+        }
+        
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #1e40af 0%, #059669 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #1e40af;
+            padding: 0.7rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+        
+        .btn-secondary:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: -3rem auto 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            color: #f59e0b;
+            font-weight: bold;
+        }
+        
+        .stat-label {
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        
+        /* Sections */
+        section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #1e40af;
+        }
+        
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 0.5rem;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card h3 {
+            color: #1e40af;
+            margin-bottom: 1rem;
+        }
+        
+        .card p {
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        /* Contact */
+        .contact-info {
+            background: #f3f4f6;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .contact-item {
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .contact-item strong {
+            color: #1e40af;
+            min-width: 120px;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1f2937;
+            color: white;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: #f59e0b;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: #374151;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: #1e40af;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #374151;
+            color: #9ca3af;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .btn-primary, .btn-secondary {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">🏪 Galeria Champagnat</div>
+            <ul>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#quem-somos">Quem Somos</a></li>
+                <li><a href="#produtos">Produtos</a></li>
+                <li><a href="#contato">Contato</a></li>
+                <li><a href="https://www.galeriastore.com.br" target="_blank" class="btn-primary">Loja Online</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <h1>Elegância e Qualidade em Uniformes e Papelaria</h1>
+        <p>Desde 2016, a Galeria Champagnat é referência em uniformes escolares e materiais didáticos no Colégio Marista. Atendimento personalizado, marcas reconhecidas e os melhores preços da região.</p>
+        <div class="hero-buttons">
+            <a href="#produtos" class="btn-secondary">Conheça Nossos Produtos</a>
+            <a href="#contato" class="btn-secondary">Entre em Contato</a>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <div class="stats">
+        <div class="stat">
+            <div class="stat-number">8+</div>
+            <div class="stat-label">Anos de Excelência</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Marcas Reconhecidas</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">2</div>
+            <div class="stat-label">Unidades Físicas</div>
+        </div>
+    </div>
+
+    <!-- Diferenciais -->
+    <section id="diferenciais">
+        <h2>Nossos Diferenciais</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>⚡ Entrega Rápida</h3>
+                <p>Prazos ágeis e confiáveis para seus pedidos</p>
+            </div>
+            <div class="card">
+                <h3>🏭 Produção Própria</h3>
+                <p>Controle total da qualidade em cada etapa</p>
+            </div>
+            <div class="card">
+                <h3>👥 Atendimento Personalizado</h3>
+                <p>Equipe dedicada ao seu projeto e necessidades</p>
+            </div>
+            <div class="card">
+                <h3>💳 Parcelamento</h3>
+                <p>Opções de pagamento flexíveis para sua comodidade</p>
+            </div>
+            <div class="card">
+                <h3>✨ Qualidade Premium</h3>
+                <p>Tecidos de primeira linha e acabamento impecável</p>
+            </div>
+            <div class="card">
+                <h3>🌱 Sustentabilidade</h3>
+                <p>Compromisso com práticas responsáveis</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Produtos -->
+    <section id="produtos">
+        <h2>Nossos Produtos</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>👕 Uniformes Escolares</h3>
+                <p>Camisetas, calças, bermudas, jaquetas e muito mais. Todos os tamanhos e modelos para a rede Marista.</p>
+                <a href="https://www.galeriastore.com.br" target="_blank" class="btn-primary" style="display: inline-block; margin-top: 1rem;">Ver Produtos</a>
+            </div>
+            <div class="card">
+                <h3>📚 Materiais de Papelaria</h3>
+                <p>Livros didáticos, materiais pedagógicos, papelaria e itens escolares de marcas reconhecidas.</p>
+                <a href="https://www.galeriastore.com.br" target="_blank" class="btn-primary" style="display: inline-block; margin-top: 1rem;">Ver Produtos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quem Somos -->
+    <section id="quem-somos">
+        <h2>Quem Somos</h2>
+        <div style="background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            <h3 style="color: #1e40af; margin-bottom: 1rem;">Nossa História</h3>
+            <p style="margin-bottom: 1rem;">Desde 2016, a Galeria Champagnat é parte da comunidade Marista, oferecendo qualidade, confiabilidade e atendimento excepcional. Começamos com a missão de fornecer uniformes escolares e materiais didáticos de excelência para a rede Marista.</p>
+            
+            <h3 style="color: #1e40af; margin-bottom: 1rem; margin-top: 2rem;">Missão</h3>
+            <p style="margin-bottom: 1rem;">Fornecer uniformes escolares e materiais didáticos de qualidade superior com atendimento personalizado e preços justos.</p>
+            
+            <h3 style="color: #1e40af; margin-bottom: 1rem; margin-top: 2rem;">Valores</h3>
+            <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+                <li>Qualidade em todos os produtos</li>
+                <li>Atendimento acolhedor e personalizado</li>
+                <li>Preços justos e competitivos</li>
+                <li>Compromisso com a comunidade Marista</li>
+                <li>Sustentabilidade e responsabilidade social</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Depoimentos -->
+    <section id="depoimentos">
+        <h2>O que Nossos Clientes Dizem</h2>
+        <div class="cards">
+            <div class="card">
+                <p style="color: #f59e0b; margin-bottom: 1rem;">⭐⭐⭐⭐⭐</p>
+                <p style="font-style: italic; margin-bottom: 1rem;">"A Galeria Champagnat é parceira confiável há anos. Qualidade impecável, atendimento personalizado e sempre cumprem prazos. Recomendamos!"</p>
+                <strong>Diretora Maria Silva</strong>
+                <p style="color: #666; font-size: 0.9rem;">Colégio Marista 609 Sul</p>
+            </div>
+            <div class="card">
+                <p style="color: #f59e0b; margin-bottom: 1rem;">⭐⭐⭐⭐⭐</p>
+                <p style="font-style: italic; margin-bottom: 1rem;">"Fornecedor excelente para uniformes empresariais. Bordado perfeito, tecido de qualidade e entrega dentro do prazo."</p>
+                <strong>Gerente de RH - João Santos</strong>
+                <p style="color: #666; font-size: 0.9rem;">Empresa de Tecnologia</p>
+            </div>
+            <div class="card">
+                <p style="color: #f59e0b; margin-bottom: 1rem;">⭐⭐⭐⭐⭐</p>
+                <p style="font-style: italic; margin-bottom: 1rem;">"Desde 2016 confiamos na Galeria Champagnat. Os uniformes chegam perfeitos, os preços são justos e o atendimento é muito atencioso."</p>
+                <strong>Coordenadora Pedagógica - Ana Costa</strong>
+                <p style="color: #666; font-size: 0.9rem;">Colégio Marista 615 Sul</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato">
+        <h2>Entre em Contato</h2>
+        <div class="contact-info">
+            <div class="contact-item">
+                <strong>📞 Telefone:</strong>
+                <span>(61) 3244-6316 / 99951-1616</span>
+            </div>
+            <div class="contact-item">
+                <strong>📧 Email:</strong>
+                <span><a href="mailto:atendimento@galeriastore.com.br" style="color: #1e40af; text-decoration: none;">atendimento@galeriastore.com.br</a></span>
+            </div>
+            <div class="contact-item">
+                <strong>📍 Endereço:</strong>
+                <span>SGAS 609, Módulo A - Colégio Marista 609 sul, Brasília, DF</span>
+            </div>
+            <div class="contact-item">
+                <strong>🕐 Horário:</strong>
+                <span>Segunda a Sexta - 8h às 18h</span>
+            </div>
+        </div>
+        
+        <div style="text-align: center;">
+            <a href="https://wa.me/556199511616" target="_blank" class="btn-primary">💬 Conversar no WhatsApp</a>
+            <a href="https://www.galeriastore.com.br" target="_blank" class="btn-primary" style="margin-left: 1rem;">🛍️ Acessar Loja Online</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Galeria Champagnat</h4>
+                <p>Uniformes escolares e materiais de papelaria com qualidade e excelência desde 2016.</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/galeriachampagnat" target="_blank" title="Facebook">f</a>
+                    <a href="https://www.instagram.com/galeria_champagnat" target="_blank" title="Instagram">📷</a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Links Rápidos</h4>
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#quem-somos">Quem Somos</a></li>
+                    <li><a href="#produtos">Produtos</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contato</h4>
+                <ul>
+                    <li><a href="tel:+556132446316">(61) 3244-6316</a></li>
+                    <li><a href="https://wa.me/556199511616">99951-1616 (WhatsApp)</a></li>
+                    <li><a href="mailto:atendimento@galeriastore.com.br">atendimento@galeriastore.com.br</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Loja Online</h4>
+                <ul>
+                    <li><a href="https://www.galeriastore.com.br" target="_blank">www.galeriastore.com.br</a></li>
+                    <li><a href="https://www.galeriastore.com.br" target="_blank">Acessar Loja</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Galeria Champagnat. Todos os direitos reservados. | Localizado no Colégio Marista - SGAS 609, Módulo A - Brasília, DF</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
