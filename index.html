@@ -3,27 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Galeria Champagnat - Uniformes escolares e papelaria com qualidade para a rede Marista em Brasília.">
     <title>Galeria Champagnat - Uniformes e Papelaria</title>
+    
+    <!-- Ícones (CDN leve) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* ===== VARIÁVEIS DE DESIGN ===== */
+        :root {
+            --primary: #1e40af;
+            --primary-dark: #1e3a8a;
+            --secondary: #059669;
+            --accent: #f59e0b;
+            --text: #333333;
+            --text-light: #666666;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --border: #e5e7eb;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --radius: 0.75rem;
+            --transition: all 0.3s ease;
         }
+
+        /* ===== RESET & BASE ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { scroll-behavior: smooth; }
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--bg-light);
         }
-        
-        /* Header */
+
+        /* ===== HEADER & NAVEGAÇÃO ===== */
         header {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: var(--bg-white);
+            box-shadow: var(--shadow);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
         }
         
         nav {
@@ -36,60 +58,108 @@
         }
         
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #1e40af;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
+        
+        .logo i { font-size: 1.6rem; }
         
         nav ul {
             list-style: none;
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
             align-items: center;
         }
         
         nav a {
             text-decoration: none;
-            color: #333;
-            transition: color 0.3s;
+            color: var(--text);
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+            position: relative;
         }
         
-        nav a:hover {
-            color: #1e40af;
+        nav a:hover, nav a.active {
+            color: var(--primary);
         }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+        
+        nav a:hover::after { width: 100%; }
         
         .btn-primary {
-            background: #1e40af;
-            color: white;
-            padding: 0.5rem 1.5rem;
+            background: var(--primary);
+            color: white !important;
+            padding: 0.6rem 1.5rem;
             border-radius: 0.5rem;
             text-decoration: none;
-            transition: background 0.3s;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+            cursor: pointer;
         }
         
         .btn-primary:hover {
-            background: #1e3a8a;
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
         }
         
-        /* Hero */
+        .btn-primary::after { display: none !important; }
+
+        /* ===== HERO SECTION ===== */
         .hero {
-            background: linear-gradient(135deg, #1e40af 0%, #059669 100%);
+            background: linear-gradient(135deg, rgba(30, 64, 175, 0.95) 0%, rgba(5, 150, 105, 0.9) 100%), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,128L48,144C96,160,192,192,288,186.7C384,181,480,139,576,138.7C672,139,768,181,864,208C960,235,1056,245,1152,229.3C1248,213,1344,171,1392,149.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
             color: white;
-            padding: 6rem 2rem;
+            padding: 7rem 2rem 5rem;
             text-align: center;
+            position: relative;
         }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.2) 100%);
+            pointer-events: none;
+        }
+        
+        .hero > * { position: relative; z-index: 1; }
         
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 2.8rem;
+            margin-bottom: 1.2rem;
+            font-weight: 700;
+            line-height: 1.2;
         }
         
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 600px;
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            max-width: 650px;
             margin-left: auto;
             margin-right: auto;
+            opacity: 0.95;
         }
         
         .hero-buttons {
@@ -101,204 +171,522 @@
         
         .btn-secondary {
             background: white;
-            color: #1e40af;
-            padding: 0.7rem 2rem;
+            color: var(--primary) !important;
+            padding: 0.8rem 2.2rem;
             border-radius: 0.5rem;
             text-decoration: none;
-            font-weight: bold;
-            transition: transform 0.3s;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
         .btn-secondary:hover {
-            transform: scale(1.05);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
         }
-        
-        /* Stats */
+
+        /* ===== STATS ===== */
         .stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
+            gap: 1.5rem;
             max-width: 1200px;
-            margin: -3rem auto 0;
+            margin: -3.5rem auto 0;
             padding: 2rem;
-            background: white;
-            border-radius: 1rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background: var(--bg-white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            z-index: 10;
         }
         
         .stat {
             text-align: center;
+            padding: 1rem;
         }
         
         .stat-number {
-            font-size: 2.5rem;
-            color: #f59e0b;
-            font-weight: bold;
+            font-size: 2.8rem;
+            color: var(--accent);
+            font-weight: 800;
+            line-height: 1;
         }
         
         .stat-label {
-            color: #666;
+            color: var(--text-light);
             margin-top: 0.5rem;
+            font-weight: 500;
+            font-size: 0.95rem;
         }
-        
-        /* Sections */
+
+        /* ===== SEÇÕES GERAIS ===== */
         section {
             max-width: 1200px;
-            margin: 4rem auto;
+            margin: 5rem auto;
             padding: 0 2rem;
         }
         
         h2 {
-            font-size: 2rem;
-            margin-bottom: 2rem;
+            font-size: 2.2rem;
+            margin-bottom: 2.5rem;
             text-align: center;
-            color: #1e40af;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 1rem;
         }
         
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        /* ===== CARDS ===== */
         .cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
         
         .card {
-            background: white;
-            border-radius: 0.5rem;
+            background: var(--bg-white);
+            border-radius: var(--radius);
             padding: 2rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
         }
         
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
         }
         
         .card h3 {
-            color: #1e40af;
+            color: var(--primary);
             margin-bottom: 1rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
         .card p {
-            color: #666;
-            line-height: 1.8;
+            color: var(--text-light);
+            flex-grow: 1;
         }
         
-        /* Contact */
-        .contact-info {
-            background: #f3f4f6;
+        .card .btn-primary {
+            margin-top: 1.5rem;
+            align-self: flex-start;
+        }
+
+        /* ===== QUEM SOMOS ===== */
+        .about-content {
+            background: var(--bg-white);
+            padding: 2.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary);
+        }
+        
+        .about-content h3 {
+            color: var(--primary);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.4rem;
+        }
+        
+        .about-content h3:first-child { margin-top: 0; }
+        
+        .about-content ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .about-content li {
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+        
+        .about-content li::marker {
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* ===== DEPOIMENTOS ===== */
+        .testimonial-card {
+            background: var(--bg-white);
+            border-radius: var(--radius);
             padding: 2rem;
-            border-radius: 0.5rem;
-            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            left: 1.5rem;
+            font-size: 4rem;
+            color: var(--accent);
+            opacity: 0.2;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        
+        .testimonial-card p:first-child {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .testimonial-card p:nth-child(2) {
+            font-style: italic;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-card strong {
+            display: block;
+            color: var(--primary);
+            margin-bottom: 0.2rem;
+        }
+        
+        .testimonial-card p:last-child {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* ===== CONTATO ===== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+        
+        .contact-info {
+            background: var(--bg-white);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
         }
         
         .contact-item {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             display: flex;
             gap: 1rem;
+            align-items: flex-start;
+        }
+        
+        .contact-item i {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-top: 0.2rem;
+            min-width: 24px;
         }
         
         .contact-item strong {
-            color: #1e40af;
-            min-width: 120px;
+            color: var(--text);
+            min-width: 100px;
+            font-weight: 600;
         }
         
-        /* Footer */
+        .contact-item a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .contact-item a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+        
+        .contact-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ===== FOOTER ===== */
         footer {
             background: #1f2937;
             color: white;
-            padding: 3rem 2rem;
-            margin-top: 4rem;
+            padding: 4rem 2rem 2rem;
+            margin-top: 3rem;
         }
         
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2.5rem;
         }
         
         .footer-section h4 {
+            margin-bottom: 1.2rem;
+            color: var(--accent);
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-section h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--primary);
+        }
+        
+        .footer-section p {
+            color: #d1d5db;
+            line-height: 1.8;
             margin-bottom: 1rem;
-            color: #f59e0b;
         }
         
         .footer-section ul {
             list-style: none;
         }
         
+        .footer-section li {
+            margin-bottom: 0.7rem;
+        }
+        
         .footer-section a {
             color: #d1d5db;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
         .footer-section a:hover {
             color: white;
+            transform: translateX(3px);
         }
         
         .social-links {
             display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
+            gap: 0.8rem;
+            margin-top: 1.2rem;
         }
         
         .social-links a {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background: #374151;
-            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.3s;
+            width: 42px;
+            height: 42px;
+            background: #374151;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            text-decoration: none !important;
         }
         
         .social-links a:hover {
-            background: #1e40af;
+            background: var(--primary);
+            transform: translateY(-3px);
         }
         
         .footer-bottom {
             text-align: center;
-            margin-top: 2rem;
+            margin-top: 3rem;
             padding-top: 2rem;
             border-top: 1px solid #374151;
             color: #9ca3af;
+            font-size: 0.95rem;
         }
         
-        /* Responsive */
-        @media (max-width: 768px) {
+        .footer-bottom a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* ===== BOTÃO WHATSAPP FLUTUANTE ===== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            transition: var(--transition);
+            z-index: 1001;
+            text-decoration: none;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+        }
+        
+        .whatsapp-float i { margin-top: 2px; }
+
+        /* ===== RESPONSIVIDADE ===== */
+        @media (max-width: 900px) {
             nav ul {
-                gap: 1rem;
-                font-size: 0.9rem;
+                gap: 0.8rem;
+                font-size: 0.95rem;
+            }
+            
+            nav ul a:not(.btn-primary) {
+                padding: 0.3rem 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 5rem 1.5rem 4rem;
             }
             
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
             }
             
             .hero-buttons {
                 flex-direction: column;
+                align-items: center;
             }
             
-            .btn-primary, .btn-secondary {
+            .btn-secondary, .btn-primary {
                 width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            
+            .stats {
+                margin-top: -2.5rem;
+                padding: 1.5rem;
+            }
+            
+            .stat-number {
+                font-size: 2.3rem;
+            }
+            
+            section {
+                margin: 4rem auto;
+                padding: 0 1.5rem;
+            }
+            
+            h2 {
+                font-size: 1.9rem;
+            }
+            
+            .contact-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .contact-actions .btn-primary {
+                width: 100%;
+                max-width: 300px;
+                margin: 0.3rem 0 !important;
             }
         }
+        
+        @media (max-width: 480px) {
+            nav {
+                padding: 0.8rem 1.5rem;
+                flex-wrap: wrap;
+                gap: 0.8rem;
+            }
+            
+            .logo {
+                font-size: 1.2rem;
+            }
+            
+            nav ul {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+
+        /* ===== ANIMAÇÕES SUAVES ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .card, .stat, .contact-item {
+            animation: fadeInUp 0.5s ease forwards;
+            opacity: 0;
+        }
+        
+        .card:nth-child(1), .stat:nth-child(1), .contact-item:nth-child(1) { animation-delay: 0.1s; opacity: 1; }
+        .card:nth-child(2), .stat:nth-child(2), .contact-item:nth-child(2) { animation-delay: 0.2s; opacity: 1; }
+        .card:nth-child(3), .stat:nth-child(3), .contact-item:nth-child(3) { animation-delay: 0.3s; opacity: 1; }
+        .card:nth-child(4), .contact-item:nth-child(4) { animation-delay: 0.4s; opacity: 1; }
+        .card:nth-child(5) { animation-delay: 0.5s; opacity: 1; }
+        .card:nth-child(6) { animation-delay: 0.6s; opacity: 1; }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
         <nav>
-            <div class="logo">🏪 Galeria Champagnat</div>
+            <div class="logo">
+                <i class="fas fa-store"></i>
+                Galeria Champagnat
+            </div>
             <ul>
-                <li><a href="#inicio">Início</a></li>
+                <li><a href="#inicio" class="active">Início</a></li>
                 <li><a href="#quem-somos">Quem Somos</a></li>
                 <li><a href="#produtos">Produtos</a></li>
                 <li><a href="#contato">Contato</a></li>
-                <li><a href="https://www.galeriastore.com.br" target="_blank" class="btn-primary">Loja Online</a></li>
+                <li>
+                    <a href="https://www.galeriastore.com.br" target="_blank" class="btn-primary">
+                        <i class="fas fa-shopping-cart"></i> Loja Online
+                    </a>
+                </li>
             </ul>
         </nav>
     </header>
@@ -308,8 +696,12 @@
         <h1>Elegância e Qualidade em Uniformes e Papelaria</h1>
         <p>Desde 2016, a Galeria Champagnat é referência em uniformes escolares e materiais didáticos no Colégio Marista. Atendimento personalizado, marcas reconhecidas e os melhores preços da região.</p>
         <div class="hero-buttons">
-            <a href="#produtos" class="btn-secondary">Conheça Nossos Produtos</a>
-            <a href="#contato" class="btn-secondary">Entre em Contato</a>
+            <a href="#produtos" class="btn-secondary">
+                <i class="fas fa-box-open"></i> Conheça Nossos Produtos
+            </a>
+            <a href="#contato" class="btn-secondary">
+                <i class="fas fa-comment-dots"></i> Entre em Contato
+            </a>
         </div>
     </section>
 
@@ -334,27 +726,27 @@
         <h2>Nossos Diferenciais</h2>
         <div class="cards">
             <div class="card">
-                <h3>⚡ Entrega Rápida</h3>
+                <h3><i class="fas fa-bolt"></i> Entrega Rápida</h3>
                 <p>Prazos ágeis e confiáveis para seus pedidos</p>
             </div>
             <div class="card">
-                <h3>🏭 Produção Própria</h3>
+                <h3><i class="fas fa-industry"></i> Produção Própria</h3>
                 <p>Controle total da qualidade em cada etapa</p>
             </div>
             <div class="card">
-                <h3>👥 Atendimento Personalizado</h3>
+                <h3><i class="fas fa-users"></i> Atendimento Personalizado</h3>
                 <p>Equipe dedicada ao seu projeto e necessidades</p>
             </div>
             <div class="card">
-                <h3>💳 Parcelamento</h3>
+                <h3><i class="fas fa-credit-card"></i> Parcelamento</h3>
                 <p>Opções de pagamento flexíveis para sua comodidade</p>
             </div>
             <div class="card">
-                <h3>✨ Qualidade Premium</h3>
+                <h3><i class="fas fa-star"></i> Qualidade Premium</h3>
                 <p>Tecidos de primeira linha e acabamento impecável</p>
             </div>
             <div class="card">
-                <h3>🌱 Sustentabilidade</h3>
+                <h3><i class="fas fa-leaf"></i> Sustentabilidade</h3>
                 <p>Compromisso com práticas responsáveis</p>
             </div>
         </div>
@@ -365,14 +757,18 @@
         <h2>Nossos Produtos</h2>
         <div class="cards">
             <div class="card">
-                <h3>👕 Uniformes Escolares</h3>
+                <h3><i class="fas fa-tshirt"></i> Uniformes Escolares</h3>
                 <p>Camisetas, calças, bermudas, jaquetas e muito mais. Todos os tamanhos e modelos para a rede Marista.</p>
-                <a href="https://www.galeriastore.com.br" target="_blank" class="btn-primary" style="display: inline-block; margin-top: 1rem;">Ver Produtos</a>
+                <a href="https://www.galeriastore.com.br" target="_blank" class="btn-primary">
+                    <i class="fas fa-arrow-right"></i> Ver Produtos
+                </a>
             </div>
             <div class="card">
-                <h3>📚 Materiais de Papelaria</h3>
+                <h3><i class="fas fa-book-open"></i> Materiais de Papelaria</h3>
                 <p>Livros didáticos, materiais pedagógicos, papelaria e itens escolares de marcas reconhecidas.</p>
-                <a href="https://www.galeriastore.com.br" target="_blank" class="btn-primary" style="display: inline-block; margin-top: 1rem;">Ver Produtos</a>
+                <a href="https://www.galeriastore.com.br" target="_blank" class="btn-primary">
+                    <i class="fas fa-arrow-right"></i> Ver Produtos
+                </a>
             </div>
         </div>
     </section>
@@ -380,15 +776,15 @@
     <!-- Quem Somos -->
     <section id="quem-somos">
         <h2>Quem Somos</h2>
-        <div style="background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h3 style="color: #1e40af; margin-bottom: 1rem;">Nossa História</h3>
-            <p style="margin-bottom: 1rem;">Desde 2016, a Galeria Champagnat é parte da comunidade Marista, oferecendo qualidade, confiabilidade e atendimento excepcional. Começamos com a missão de fornecer uniformes escolares e materiais didáticos de excelência para a rede Marista.</p>
-            
-            <h3 style="color: #1e40af; margin-bottom: 1rem; margin-top: 2rem;">Missão</h3>
-            <p style="margin-bottom: 1rem;">Fornecer uniformes escolares e materiais didáticos de qualidade superior com atendimento personalizado e preços justos.</p>
-            
-            <h3 style="color: #1e40af; margin-bottom: 1rem; margin-top: 2rem;">Valores</h3>
-            <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+        <div class="about-content">
+            <h3><i class="fas fa-history"></i> Nossa História</h3>
+            <p>Desde 2016, a Galeria Champagnat é parte da comunidade Marista, oferecendo qualidade, confiabilidade e atendimento excepcional. Começamos com a missão de fornecer uniformes escolares e materiais didáticos de excelência para a rede Marista.</p>
+           
+            <h3><i class="fas fa-bullseye"></i> Missão</h3>
+            <p>Fornecer uniformes escolares e materiais didáticos de qualidade superior com atendimento personalizado e preços justos.</p>
+           
+            <h3><i class="fas fa-heart"></i> Valores</h3>
+            <ul>
                 <li>Qualidade em todos os produtos</li>
                 <li>Atendimento acolhedor e personalizado</li>
                 <li>Preços justos e competitivos</li>
@@ -402,23 +798,23 @@
     <section id="depoimentos">
         <h2>O que Nossos Clientes Dizem</h2>
         <div class="cards">
-            <div class="card">
-                <p style="color: #f59e0b; margin-bottom: 1rem;">⭐⭐⭐⭐⭐</p>
-                <p style="font-style: italic; margin-bottom: 1rem;">"A Galeria Champagnat é parceira confiável há anos. Qualidade impecável, atendimento personalizado e sempre cumprem prazos. Recomendamos!"</p>
+            <div class="testimonial-card">
+                <p><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
+                <p>"A Galeria Champagnat é parceira confiável há anos. Qualidade impecável, atendimento personalizado e sempre cumprem prazos. Recomendamos!"</p>
                 <strong>Diretora Maria Silva</strong>
-                <p style="color: #666; font-size: 0.9rem;">Colégio Marista 609 Sul</p>
+                <p><i class="fas fa-school"></i> Colégio Marista 609 Sul</p>
             </div>
-            <div class="card">
-                <p style="color: #f59e0b; margin-bottom: 1rem;">⭐⭐⭐⭐⭐</p>
-                <p style="font-style: italic; margin-bottom: 1rem;">"Fornecedor excelente para uniformes empresariais. Bordado perfeito, tecido de qualidade e entrega dentro do prazo."</p>
+            <div class="testimonial-card">
+                <p><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
+                <p>"Fornecedor excelente para uniformes empresariais. Bordado perfeito, tecido de qualidade e entrega dentro do prazo."</p>
                 <strong>Gerente de RH - João Santos</strong>
-                <p style="color: #666; font-size: 0.9rem;">Empresa de Tecnologia</p>
+                <p><i class="fas fa-building"></i> Empresa de Tecnologia</p>
             </div>
-            <div class="card">
-                <p style="color: #f59e0b; margin-bottom: 1rem;">⭐⭐⭐⭐⭐</p>
-                <p style="font-style: italic; margin-bottom: 1rem;">"Desde 2016 confiamos na Galeria Champagnat. Os uniformes chegam perfeitos, os preços são justos e o atendimento é muito atencioso."</p>
+            <div class="testimonial-card">
+                <p><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
+                <p>"Desde 2016 confiamos na Galeria Champagnat. Os uniformes chegam perfeitos, os preços são justos e o atendimento é muito atencioso."</p>
                 <strong>Coordenadora Pedagógica - Ana Costa</strong>
-                <p style="color: #666; font-size: 0.9rem;">Colégio Marista 615 Sul</p>
+                <p><i class="fas fa-school"></i> Colégio Marista 615 Sul</p>
             </div>
         </div>
     </section>
@@ -426,28 +822,46 @@
     <!-- Contato -->
     <section id="contato">
         <h2>Entre em Contato</h2>
-        <div class="contact-info">
-            <div class="contact-item">
-                <strong>📞 Telefone:</strong>
-                <span>(61) 3244-6316 / 99951-1616</span>
-            </div>
-            <div class="contact-item">
-                <strong>📧 Email:</strong>
-                <span><a href="mailto:atendimento@galeriastore.com.br" style="color: #1e40af; text-decoration: none;">atendimento@galeriastore.com.br</a></span>
-            </div>
-            <div class="contact-item">
-                <strong>📍 Endereço:</strong>
-                <span>SGAS 609, Módulo A - Colégio Marista 609 sul, Brasília, DF</span>
-            </div>
-            <div class="contact-item">
-                <strong>🕐 Horário:</strong>
-                <span>Segunda a Sexta - 8h às 18h</span>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <div>
+                        <strong>Telefone:</strong>
+                        <span>(61) 3244-6316 / 99951-1616</span>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <strong>Email:</strong>
+                        <span><a href="mailto:atendimento@galeriastore.com.br">atendimento@galeriastore.com.br</a></span>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <strong>Endereço:</strong>
+                        <span>SGAS 609, Módulo A - Colégio Marista 609 sul, Brasília, DF</span>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <strong>Horário:</strong>
+                        <span>Segunda a Sexta - 8h às 18h</span>
+                    </div>
+                </div>
             </div>
         </div>
-        
-        <div style="text-align: center;">
-            <a href="https://wa.me/556199511616" target="_blank" class="btn-primary">💬 Conversar no WhatsApp</a>
-            <a href="https://www.galeriastore.com.br" target="_blank" class="btn-primary" style="margin-left: 1rem;">🛍️ Acessar Loja Online</a>
+       
+        <div class="contact-actions">
+            <a href="https://wa.me/556199511616" target="_blank" class="btn-primary">
+                <i class="fab fa-whatsapp"></i> Conversar no WhatsApp
+            </a>
+            <a href="https://www.galeriastore.com.br" target="_blank" class="btn-primary">
+                <i class="fas fa-store"></i> Acessar Loja Online
+            </a>
         </div>
     </section>
 
@@ -455,57 +869,117 @@
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <h4>Galeria Champagnat</h4>
+                <h4><i class="fas fa-store"></i> Galeria Champagnat</h4>
                 <p>Uniformes escolares e materiais de papelaria com qualidade e excelência desde 2016.</p>
                 <div class="social-links">
-                    <a href="https://www.facebook.com/galeriachampagnat" target="_blank" title="Facebook">f</a>
-                    <a href="https://www.instagram.com/galeria_champagnat" target="_blank" title="Instagram">📷</a>
+                    <a href="https://www.facebook.com/galeriachampagnat" target="_blank" title="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/galeria_champagnat" target="_blank" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
                 </div>
             </div>
-            
+           
             <div class="footer-section">
-                <h4>Links Rápidos</h4>
+                <h4><i class="fas fa-link"></i> Links Rápidos</h4>
                 <ul>
-                    <li><a href="#inicio">Início</a></li>
-                    <li><a href="#quem-somos">Quem Somos</a></li>
-                    <li><a href="#produtos">Produtos</a></li>
-                    <li><a href="#contato">Contato</a></li>
+                    <li><a href="#inicio"><i class="fas fa-chevron-right"></i> Início</a></li>
+                    <li><a href="#quem-somos"><i class="fas fa-chevron-right"></i> Quem Somos</a></li>
+                    <li><a href="#produtos"><i class="fas fa-chevron-right"></i> Produtos</a></li>
+                    <li><a href="#contato"><i class="fas fa-chevron-right"></i> Contato</a></li>
                 </ul>
             </div>
-            
+           
             <div class="footer-section">
-                <h4>Contato</h4>
+                <h4><i class="fas fa-headset"></i> Contato</h4>
                 <ul>
-                    <li><a href="tel:+556132446316">(61) 3244-6316</a></li>
-                    <li><a href="https://wa.me/556199511616">99951-1616 (WhatsApp)</a></li>
-                    <li><a href="mailto:atendimento@galeriastore.com.br">atendimento@galeriastore.com.br</a></li>
+                    <li><a href="tel:+556132446316"><i class="fas fa-phone"></i> (61) 3244-6316</a></li>
+                    <li><a href="https://wa.me/556199511616"><i class="fab fa-whatsapp"></i> 99951-1616</a></li>
+                    <li><a href="mailto:atendimento@galeriastore.com.br"><i class="fas fa-envelope"></i> atendimento@galeriastore.com.br</a></li>
                 </ul>
             </div>
-            
+           
             <div class="footer-section">
-                <h4>Loja Online</h4>
+                <h4><i class="fas fa-globe"></i> Loja Online</h4>
                 <ul>
-                    <li><a href="https://www.galeriastore.com.br" target="_blank">www.galeriastore.com.br</a></li>
-                    <li><a href="https://www.galeriastore.com.br" target="_blank">Acessar Loja</a></li>
+                    <li><a href="https://www.galeriastore.com.br" target="_blank"><i class="fas fa-external-link-alt"></i> www.galeriastore.com.br</a></li>
+                    <li><a href="https://www.galeriastore.com.br" target="_blank"><i class="fas fa-shopping-bag"></i> Acessar Loja</a></li>
                 </ul>
             </div>
         </div>
-        
+       
         <div class="footer-bottom">
-            <p>&copy; 2026 Galeria Champagnat. Todos os direitos reservados. | Localizado no Colégio Marista - SGAS 609, Módulo A - Brasília, DF</p>
+            <p>&copy; 2026 Galeria Champagnat. Todos os direitos reservados. | <a href="https://www.galeriastore.com.br" target="_blank">galeriastore.com.br</a> | SGAS 609, Módulo A - Brasília, DF</p>
         </div>
     </footer>
 
+    <!-- Botão WhatsApp Flutuante -->
+    <a href="https://wa.me/556199511616" target="_blank" class="whatsapp-float" title="Converse conosco no WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <script>
-        // Smooth scroll
+        // Smooth scroll com destaque do menu ativo
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
+                const href = this.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        
+                        // Atualiza classe ativa do menu
+                        document.querySelectorAll('nav a').forEach(link => link.classList.remove('active'));
+                        this.classList.add('active');
+                    }
                 }
             });
+        });
+
+        // Destaque do menu ao rolar a página
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (pageYOffset >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Animação de entrada dos cards ao rolar
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card, .stat').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
         });
     </script>
 </body>
