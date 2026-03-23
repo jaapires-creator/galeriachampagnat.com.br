@@ -4,10 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Galeria Champagnat - Uniformes escolares e papelaria com qualidade para a rede Marista em Brasília.">
+    <meta name="keywords" content="uniformes escolares, papelaria, Brasília, Colégio Marista, materiais didáticos">
+    <meta name="author" content="Galeria Champagnat">
+    <meta property="og:title" content="Galeria Champagnat - Uniformes e Papelaria">
+    <meta property="og:description" content="Referência em uniformes escolares e materiais didáticos desde 2016">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.galeriachampagnat.com.br">
     <title>Galeria Champagnat - Uniformes e Papelaria</title>
     
-    <!-- Ícones (CDN leve) -->
+    <!-- Ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Preconnect para performance -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     
     <style>
         /* ===== VARIÁVEIS DE DESIGN ===== */
@@ -58,15 +67,52 @@
         }
         
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
             font-size: 1.4rem;
             font-weight: 700;
             color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            text-decoration: none;
         }
         
-        .logo i { font-size: 1.6rem; }
+        .logo img {
+            height: 50px;
+            width: auto;
+            transition: var(--transition);
+        }
+        
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+        
+        .logo-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        
+        .logo-subtitle {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+        
+        /* Menu Mobile Toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
         
         nav ul {
             list-style: none;
@@ -126,22 +172,34 @@
 
         /* ===== HERO SECTION ===== */
         .hero {
-            background: linear-gradient(135deg, rgba(30, 64, 175, 0.95) 0%, rgba(5, 150, 105, 0.9) 100%), 
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,128L48,144C96,160,192,192,288,186.7C384,181,480,139,576,138.7C672,139,768,181,864,208C960,235,1056,245,1152,229.3C1248,213,1344,171,1392,149.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
-            background-size: cover;
-            background-position: center;
+            background: linear-gradient(135deg, rgba(30, 64, 175, 0.95) 0%, rgba(5, 150, 105, 0.9) 100%);
             color: white;
             padding: 7rem 2rem 5rem;
             text-align: center;
             position: relative;
+            overflow: hidden;
         }
         
         .hero::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.2) 100%);
-            pointer-events: none;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 50%;
         }
         
         .hero > * { position: relative; z-index: 1; }
@@ -151,6 +209,7 @@
             margin-bottom: 1.2rem;
             font-weight: 700;
             line-height: 1.2;
+            animation: fadeInUp 0.8s ease;
         }
         
         .hero p {
@@ -160,6 +219,7 @@
             margin-left: auto;
             margin-right: auto;
             opacity: 0.95;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
         }
         
         .hero-buttons {
@@ -167,6 +227,7 @@
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
         }
         
         .btn-secondary {
@@ -180,6 +241,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            box-shadow: var(--shadow);
         }
         
         .btn-secondary:hover {
@@ -205,6 +267,11 @@
         .stat {
             text-align: center;
             padding: 1rem;
+            transition: var(--transition);
+        }
+        
+        .stat:hover {
+            transform: translateY(-5px);
         }
         
         .stat-number {
@@ -245,7 +312,7 @@
             transform: translateX(-50%);
             width: 60px;
             height: 3px;
-            background: var(--accent);
+            background: linear-gradient(90deg, var(--primary), var(--accent));
             border-radius: 2px;
         }
 
@@ -305,6 +372,9 @@
             color: var(--primary);
             margin: 1.5rem 0 1rem;
             font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
         .about-content h3:first-child { margin-top: 0; }
@@ -318,11 +388,6 @@
             margin-bottom: 0.5rem;
             color: var(--text-light);
         }
-        
-        .about-content li::marker {
-            color: var(--accent);
-            font-weight: bold;
-        }
 
         /* ===== DEPOIMENTOS ===== */
         .testimonial-card {
@@ -332,6 +397,12 @@
             box-shadow: var(--shadow);
             border: 1px solid var(--border);
             position: relative;
+            transition: var(--transition);
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
         }
         
         .testimonial-card::before {
@@ -543,14 +614,19 @@
             transition: var(--transition);
             z-index: 1001;
             text-decoration: none;
+            animation: pulse 2s infinite;
         }
         
         .whatsapp-float:hover {
             transform: scale(1.1);
             box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+            animation: none;
         }
-        
-        .whatsapp-float i { margin-top: 2px; }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
+            50% { box-shadow: 0 4px 30px rgba(37, 211, 102, 0.7); }
+        }
 
         /* ===== RESPONSIVIDADE ===== */
         @media (max-width: 900px) {
@@ -558,13 +634,31 @@
                 gap: 0.8rem;
                 font-size: 0.95rem;
             }
-            
-            nav ul a:not(.btn-primary) {
-                padding: 0.3rem 0;
-            }
         }
         
         @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav ul {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: var(--bg-white);
+                width: 100%;
+                text-align: center;
+                transition: var(--transition);
+                box-shadow: var(--shadow);
+                padding: 2rem 0;
+                gap: 1.5rem;
+            }
+            
+            nav ul.active {
+                left: 0;
+            }
+            
             .hero {
                 padding: 5rem 1.5rem 4rem;
             }
@@ -616,23 +710,23 @@
                 max-width: 300px;
                 margin: 0.3rem 0 !important;
             }
+            
+            .logo-subtitle {
+                display: none;
+            }
         }
         
         @media (max-width: 480px) {
             nav {
                 padding: 0.8rem 1.5rem;
-                flex-wrap: wrap;
-                gap: 0.8rem;
             }
             
-            .logo {
-                font-size: 1.2rem;
+            .logo img {
+                height: 40px;
             }
             
-            nav ul {
-                width: 100%;
-                justify-content: center;
-                flex-wrap: wrap;
+            .logo-title {
+                font-size: 1.1rem;
             }
             
             .hero h1 {
@@ -644,7 +738,7 @@
             }
         }
 
-        /* ===== ANIMAÇÕES SUAVES ===== */
+        /* ===== ANIMAÇÕES ===== */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -656,27 +750,32 @@
             }
         }
         
-        .card, .stat, .contact-item {
-            animation: fadeInUp 0.5s ease forwards;
+        .fade-in {
             opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
         
-        .card:nth-child(1), .stat:nth-child(1), .contact-item:nth-child(1) { animation-delay: 0.1s; opacity: 1; }
-        .card:nth-child(2), .stat:nth-child(2), .contact-item:nth-child(2) { animation-delay: 0.2s; opacity: 1; }
-        .card:nth-child(3), .stat:nth-child(3), .contact-item:nth-child(3) { animation-delay: 0.3s; opacity: 1; }
-        .card:nth-child(4), .contact-item:nth-child(4) { animation-delay: 0.4s; opacity: 1; }
-        .card:nth-child(5) { animation-delay: 0.5s; opacity: 1; }
-        .card:nth-child(6) { animation-delay: 0.6s; opacity: 1; }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
         <nav>
-            <div class="logo">
-                <i class="fas fa-store"></i>
-                Galeria Champagnat
-            </div>
+            <a href="#inicio" class="logo">
+                <img src="logo.png" alt="Galeria Champagnat - Uniformes e Papelaria">
+                <div class="logo-text">
+                    <span class="logo-title">Galeria Champagnat</span>
+                    <span class="logo-subtitle">Uniformes e Papelaria</span>
+                </div>
+            </a>
+            <button class="menu-toggle" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
             <ul>
                 <li><a href="#inicio" class="active">Início</a></li>
                 <li><a href="#quem-somos">Quem Somos</a></li>
@@ -707,15 +806,15 @@
 
     <!-- Stats -->
     <div class="stats">
-        <div class="stat">
+        <div class="stat fade-in">
             <div class="stat-number">8+</div>
             <div class="stat-label">Anos de Excelência</div>
         </div>
-        <div class="stat">
+        <div class="stat fade-in">
             <div class="stat-number">100%</div>
             <div class="stat-label">Marcas Reconhecidas</div>
         </div>
-        <div class="stat">
+        <div class="stat fade-in">
             <div class="stat-number">2</div>
             <div class="stat-label">Unidades Físicas</div>
         </div>
@@ -725,27 +824,27 @@
     <section id="diferenciais">
         <h2>Nossos Diferenciais</h2>
         <div class="cards">
-            <div class="card">
+            <div class="card fade-in">
                 <h3><i class="fas fa-bolt"></i> Entrega Rápida</h3>
                 <p>Prazos ágeis e confiáveis para seus pedidos</p>
             </div>
-            <div class="card">
+            <div class="card fade-in">
                 <h3><i class="fas fa-industry"></i> Produção Própria</h3>
                 <p>Controle total da qualidade em cada etapa</p>
             </div>
-            <div class="card">
+            <div class="card fade-in">
                 <h3><i class="fas fa-users"></i> Atendimento Personalizado</h3>
                 <p>Equipe dedicada ao seu projeto e necessidades</p>
             </div>
-            <div class="card">
+            <div class="card fade-in">
                 <h3><i class="fas fa-credit-card"></i> Parcelamento</h3>
                 <p>Opções de pagamento flexíveis para sua comodidade</p>
             </div>
-            <div class="card">
+            <div class="card fade-in">
                 <h3><i class="fas fa-star"></i> Qualidade Premium</h3>
                 <p>Tecidos de primeira linha e acabamento impecável</p>
             </div>
-            <div class="card">
+            <div class="card fade-in">
                 <h3><i class="fas fa-leaf"></i> Sustentabilidade</h3>
                 <p>Compromisso com práticas responsáveis</p>
             </div>
@@ -756,14 +855,14 @@
     <section id="produtos">
         <h2>Nossos Produtos</h2>
         <div class="cards">
-            <div class="card">
+            <div class="card fade-in">
                 <h3><i class="fas fa-tshirt"></i> Uniformes Escolares</h3>
                 <p>Camisetas, calças, bermudas, jaquetas e muito mais. Todos os tamanhos e modelos para a rede Marista.</p>
                 <a href="https://www.galeriastore.com.br" target="_blank" class="btn-primary">
                     <i class="fas fa-arrow-right"></i> Ver Produtos
                 </a>
             </div>
-            <div class="card">
+            <div class="card fade-in">
                 <h3><i class="fas fa-book-open"></i> Materiais de Papelaria</h3>
                 <p>Livros didáticos, materiais pedagógicos, papelaria e itens escolares de marcas reconhecidas.</p>
                 <a href="https://www.galeriastore.com.br" target="_blank" class="btn-primary">
@@ -776,7 +875,7 @@
     <!-- Quem Somos -->
     <section id="quem-somos">
         <h2>Quem Somos</h2>
-        <div class="about-content">
+        <div class="about-content fade-in">
             <h3><i class="fas fa-history"></i> Nossa História</h3>
             <p>Desde 2016, a Galeria Champagnat é parte da comunidade Marista, oferecendo qualidade, confiabilidade e atendimento excepcional. Começamos com a missão de fornecer uniformes escolares e materiais didáticos de excelência para a rede Marista.</p>
            
@@ -798,19 +897,19 @@
     <section id="depoimentos">
         <h2>O que Nossos Clientes Dizem</h2>
         <div class="cards">
-            <div class="testimonial-card">
+            <div class="testimonial-card fade-in">
                 <p><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
                 <p>"A Galeria Champagnat é parceira confiável há anos. Qualidade impecável, atendimento personalizado e sempre cumprem prazos. Recomendamos!"</p>
                 <strong>Diretora Maria Silva</strong>
                 <p><i class="fas fa-school"></i> Colégio Marista 609 Sul</p>
             </div>
-            <div class="testimonial-card">
+            <div class="testimonial-card fade-in">
                 <p><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
                 <p>"Fornecedor excelente para uniformes empresariais. Bordado perfeito, tecido de qualidade e entrega dentro do prazo."</p>
                 <strong>Gerente de RH - João Santos</strong>
                 <p><i class="fas fa-building"></i> Empresa de Tecnologia</p>
             </div>
-            <div class="testimonial-card">
+            <div class="testimonial-card fade-in">
                 <p><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
                 <p>"Desde 2016 confiamos na Galeria Champagnat. Os uniformes chegam perfeitos, os preços são justos e o atendimento é muito atencioso."</p>
                 <strong>Coordenadora Pedagógica - Ana Costa</strong>
@@ -823,7 +922,7 @@
     <section id="contato">
         <h2>Entre em Contato</h2>
         <div class="contact-grid">
-            <div class="contact-info">
+            <div class="contact-info fade-in">
                 <div class="contact-item">
                     <i class="fas fa-phone-alt"></i>
                     <div>
@@ -920,6 +1019,31 @@
     </a>
 
     <script>
+        // Menu Mobile Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navUl = document.querySelector('nav ul');
+        
+        menuToggle.addEventListener('click', () => {
+            navUl.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            if (navUl.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Fechar menu ao clicar em um link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                navUl.classList.remove('active');
+                menuToggle.querySelector('i').classList.remove('fa-times');
+                menuToggle.querySelector('i').classList.add('fa-bars');
+            });
+        });
+
         // Smooth scroll com destaque do menu ativo
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -959,7 +1083,7 @@
             });
         });
 
-        // Animação de entrada dos cards ao rolar
+        // Animação de entrada dos elementos ao rolar
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -968,17 +1092,13 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('visible');
                     observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
 
-        document.querySelectorAll('.card, .stat').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        document.querySelectorAll('.fade-in').forEach(el => {
             observer.observe(el);
         });
     </script>
